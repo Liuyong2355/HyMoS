@@ -10,20 +10,20 @@ prefix_given=false
 if [[ -f "$SCRIPT_ROOT/main.so" ]]; then
     bundle="$SCRIPT_ROOT"
 else
-    bundle="$SCRIPT_ROOT/build-release/plugin/HyMoS"
+    bundle="$SCRIPT_ROOT/build-release/plugin/HyMoS-Baltamatica"
 fi
 
 usage() {
     cat <<'EOF'
 Usage: scripts/install.sh [options]
   --prefix PATH      Baltamatica installation (default: /opt/Baltamatica)
-  --plugin-dir PATH  Plugin search directory; HyMoS is created inside it
-  --bundle PATH      Built or extracted HyMoS plugin directory
-  --replace          Replace a marked HyMoS package, retaining a backup
+  --plugin-dir PATH  Plugin search directory; HyMoS-Baltamatica is created inside it
+  --bundle PATH      Built or extracted HyMoS-Baltamatica plugin directory
+  --replace          Replace a marked HyMoS-Baltamatica package, retaining a backup
   --dry-run          Check the package and destination without installing
   -h, --help         Show help
 
-The default destination is <prefix>/plugins/HyMoS.
+The default destination is <prefix>/plugins/HyMoS-Baltamatica.
 An existing unmarked directory is never replaced.
 libbex.so is provided by the host installation, not by this package.
 EOF
@@ -53,22 +53,22 @@ fi
 bundle="$(realpath -e -- "$bundle")"
 [[ -f "$bundle/.hymos-plugin" && -f "$bundle/main.so" &&
    -f "$bundle/lib/libhymos.so.5" && -f "$bundle/SHA256SUMS" ]] ||
-    { echo "This is not a complete HyMoS plugin package: $bundle" >&2; exit 1; }
-grep -qx 'name=HyMoS' "$bundle/.hymos-plugin" ||
-    { echo "The package identity is not HyMoS." >&2; exit 1; }
+    { echo "This is not a complete HyMoS-Baltamatica plugin package: $bundle" >&2; exit 1; }
+grep -qx 'name=HyMoS-Baltamatica' "$bundle/.hymos-plugin" ||
+    { echo "The package identity is not HyMoS-Baltamatica." >&2; exit 1; }
 (cd -- "$bundle" && sha256sum --check --quiet SHA256SUMS)
 plugin_dir="$(realpath -m -- "$plugin_dir")"
-destination="$plugin_dir/HyMoS"
+destination="$plugin_dir/HyMoS-Baltamatica"
 [[ "$bundle" != "$destination" ]] ||
     { echo "The source package is already at the destination." >&2; exit 1; }
 [[ ! -L "$destination" ]] ||
     { echo "Refusing to replace a symbolic link: $destination" >&2; exit 1; }
 if [[ -e "$destination" ]]; then
     [[ -d "$destination" && -f "$destination/.hymos-plugin" ]] &&
-        grep -qx 'name=HyMoS' "$destination/.hymos-plugin" ||
+        grep -qx 'name=HyMoS-Baltamatica' "$destination/.hymos-plugin" ||
         { echo "Refusing to replace an unmarked plugin: $destination" >&2; exit 1; }
     "$replace" ||
-        { echo "HyMoS is already installed; use --replace to keep a backup and update." >&2; exit 1; }
+        { echo "HyMoS-Baltamatica is already installed; use --replace to keep a backup and update." >&2; exit 1; }
 fi
 if "$dry_run"; then
     printf 'Package verified. Destination: %s\n' "$destination"
@@ -76,28 +76,28 @@ if "$dry_run"; then
 fi
 
 mkdir -p -- "$plugin_dir"
-stage="$(mktemp -d "$plugin_dir/.HyMoS-install.XXXXXX")"
+stage="$(mktemp -d "$plugin_dir/.HyMoS-Baltamatica-install.XXXXXX")"
 backup=""
 cleanup() {
     # stage is created by mktemp inside the resolved plugin directory.
-    if [[ -d "$stage" && "$stage" == "$plugin_dir"/.HyMoS-install.* ]]; then
+    if [[ -d "$stage" && "$stage" == "$plugin_dir"/.HyMoS-Baltamatica-install.* ]]; then
         rm -rf -- "$stage"
     fi
 }
 trap cleanup EXIT
-cp -a -- "$bundle" "$stage/HyMoS"
-(cd -- "$stage/HyMoS" && sha256sum --check --quiet SHA256SUMS)
+cp -a -- "$bundle" "$stage/HyMoS-Baltamatica"
+(cd -- "$stage/HyMoS-Baltamatica" && sha256sum --check --quiet SHA256SUMS)
 if [[ -e "$destination" ]]; then
-    backup="$(mktemp -d "$plugin_dir/.HyMoS-backup.XXXXXX")"
-    mv -- "$destination" "$backup/HyMoS"
+    backup="$(mktemp -d "$plugin_dir/.HyMoS-Baltamatica-backup.XXXXXX")"
+    mv -- "$destination" "$backup/HyMoS-Baltamatica"
 fi
-if ! mv -- "$stage/HyMoS" "$destination"; then
+if ! mv -- "$stage/HyMoS-Baltamatica" "$destination"; then
     if [[ -n "$backup" && ! -e "$destination" ]]; then
-        mv -- "$backup/HyMoS" "$destination"
+        mv -- "$backup/HyMoS-Baltamatica" "$destination"
     fi
     echo "Installation failed; the previous package was restored when possible." >&2
     exit 1
 fi
 printf 'Installed: %s\n' "$destination"
-[[ -z "$backup" ]] || printf 'Previous package: %s/HyMoS\n' "$backup"
-printf "In Baltamatica: load_plugin('HyMoS'); hymos_setup('1D');\n"
+[[ -z "$backup" ]] || printf 'Previous package: %s/HyMoS-Baltamatica\n' "$backup"
+printf "In Baltamatica: load_plugin('HyMoS-Baltamatica'); hymos_setup('1D');\n"

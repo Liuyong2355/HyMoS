@@ -18,7 +18,7 @@ ctest --test-dir build-release --output-on-failure
 安装插件后，在北太天元中以仓库为当前目录运行：
 
 ```matlab
-load_plugin('HyMoS');
+load_plugin('HyMoS-Baltamatica');
 addpath('tests/baltamatica');
 hymos_smoke_tests('examples/ParallelPlate1D');
 ```
@@ -29,4 +29,4 @@ hymos_smoke_tests('examples/ParallelPlate1D');
 
 ## 界面检查
 
-加载 `HyMoS`，运行 `hymos_setup('1D')`，依次确认参数分类、模板加载、检查参数和应用；随后执行 `hymos_run()`，读取结果并绘图、导出。讲解视频展示这套流程。
+加载 `HyMoS-Baltamatica`，运行 `hymos_setup('1D')`，依次确认参数分类、模板加载、检查参数和应用；随后执行 `hymos_run()`，读取结果并绘图、导出。讲解视频展示这套流程。

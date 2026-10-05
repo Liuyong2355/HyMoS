@@ -1,5 +1,5 @@
 function files = demo_export(task)
-% Export through the actual HyMoS interface and verify the generated files.
+% Export through the actual HyMoS-Baltamatica interface and verify the generated files.
 files = hymos_export(task);
 paths = {char(files.fields), char(files.residual), char(files.metadata), char(files.distribution)};
 for k = 1:numel(paths)

@@ -21,6 +21,10 @@ __pycache__/
 *.fdb_latexmk
 *.synctex.gz
 *.xdv
+*.nav
+*.snm
+*.vrb
+*.dvi
 # Runtime results; regression fixtures under tests/ remain tracked
 /examples/*/.control.*
 /examples/*/hymos_control.sh

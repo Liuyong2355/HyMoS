@@ -88,9 +88,9 @@ std::string Text(const bxArray* input, const char* name) {
 }
 Task* GetTask(const bxArray* input) {
   Need(g_task_struct_registered && bxIsExternID(input, g_task_struct_id),
-       "expected a HyMoS task");
+       "expected a HyMoS-Baltamatica task");
   Task* task = static_cast<Task*>(bxGetCStruct(g_task_struct_id, input));
-  if (!task || !task->value) throw std::runtime_error("invalid HyMoS task");
+  if (!task || !task->value) throw std::runtime_error("invalid HyMoS-Baltamatica task");
   return task;
 }
 bxArray* Status(const std::shared_ptr<CouetteTask>& task) {
@@ -303,12 +303,12 @@ bxArray* CreateTaskObject(const ConfigSnapshot& snapshot) {
   ConfigValidation validation;
   std::shared_ptr<CouetteTask> job=SubmitCouette(snapshot,&validation);
   if(!validation.valid) throw std::runtime_error(validation.Message());
-  Need(g_task_struct_registered, "HyMoS task type is not initialized");
+  Need(g_task_struct_registered, "HyMoS-Baltamatica task type is not initialized");
   Task* task = new Task(job);
   bxArray* object = bxCreateCStruct(g_task_struct_id, task);
   if (!object) {
     delete task;
-    throw std::runtime_error("could not create HyMoS task object");
+    throw std::runtime_error("could not create HyMoS-Baltamatica task object");
   }
   TrackTask(job);
   return object;
@@ -321,12 +321,12 @@ std::string PluginDirectory() {
   Dl_info info;
   if (dladdr(reinterpret_cast<void*>(&PluginDirectory), &info) == 0 ||
       info.dli_fname == NULL) {
-    throw std::runtime_error("cannot locate the loaded HyMoS plugin");
+    throw std::runtime_error("cannot locate the loaded HyMoS-Baltamatica plugin");
   }
   const std::string path(info.dli_fname);
   const std::string::size_type slash = path.find_last_of('/');
   if (slash == std::string::npos) {
-    throw std::runtime_error("invalid HyMoS plugin path: " + path);
+    throw std::runtime_error("invalid HyMoS-Baltamatica plugin path: " + path);
   }
   return path.substr(0, slash);
 }
@@ -350,7 +350,7 @@ BALTAM_PLUGIN_FCN(HymosRun) {
     const bxArray* inputs[1] = {ui_path};
     const int added = bxCallBaltamatica(0, NULL, 1, inputs, "addpath");
     bxDestroyArray(ui_path);
-    Need(added == 0, "cannot add the HyMoS helper path");
+    Need(added == 0, "cannot add the HyMoS-Baltamatica helper path");
     // Preserve the host's script error / interrupt instead of replacing it
     // with a generic C++ error after the foreground monitor is interrupted.
     bxCallBaltamatica(0, NULL, 0, NULL, "hymos_run_impl");
@@ -574,7 +574,7 @@ BALTAM_PLUGIN_FCN(HymosInfo) {
     Need(nrhs==0 && nlhs<=1,"hymos_info expects no inputs and at most one output");
     const char* names[]={"version","supported_cases","verified_plugin_paths","core_capabilities"};
     bxArray* out=bxCreateStructMatrix(1,1,4,names);
-    bxSetField(out,0,"version",bxCreateStringScalar("HyMoS 1.0.1"));
+    bxSetField(out,0,"version",bxCreateStringScalar("HyMoS-Baltamatica 1.0.2"));
     bxSetField(out,0,"supported_cases",bxCreateStringScalar("couette"));
     bxSetField(out,0,"verified_plugin_paths",bxCreateStringScalar("1D parallel-plate BGK: Couette, Fourier and Couette-Fourier through configurable wall temperatures and tangential velocities; ORDER=3..49, single/NMG, FIM=1/2/3, uniform mesh, n_thread=1..256"));
     bxSetField(out,0,"core_capabilities",bxCreateStringScalar("couette, shockstructure, cavity; FIM-1/2/3; single/NMG"));
@@ -696,8 +696,8 @@ BALTAM_PLUGIN_FCN(HymosExport) {
 extern "C" BEX_EXPORT int bxPluginInitLib(void*) { return 0; }
 extern "C" BEX_EXPORT int bxPluginInit(int,const bxArray*[]) {
   if (g_task_struct_registered) return 0;
-  g_task_struct_id = bxRegisterCStruct("HyMoS", CopyTask, DeleteTask);
-  bxSetCStructName(g_task_struct_id, "HyMoS task");
+  g_task_struct_id = bxRegisterCStruct("HyMoS-Baltamatica", CopyTask, DeleteTask);
+  bxSetCStructName(g_task_struct_id, "HyMoS-Baltamatica task");
   g_task_struct_registered = true;
   return 0;
 }
@@ -718,14 +718,14 @@ extern "C" BEX_EXPORT int bxPluginFini(void) {
 }
 extern "C" BEX_EXPORT bexfun_info_t* bxPluginFunctions(void) {
   static bexfun_info_t f[]={
-    {"hymos_info",HymosInfo,"HyMoS plugin capabilities"},
+    {"hymos_info",HymosInfo,"HyMoS-Baltamatica plugin capabilities"},
     {"hymos_run",HymosRun,"Submit applied Couette parameters and monitor in the foreground"},
     {"hymos_ui_config",HymosUIConfig,"Internal lossless form/text bridge"},
     {"hymos_ui_file",HymosUIFile,"Internal editor file adapter"},
     {"hymos_setup",HymosSetup,"Open the Couette INI configuration editor"},
     {"hymos_validate",HymosValidate,"Validate legacy HyMoS TXT configuration"},
     {"hymos_validate_text",HymosValidateText,"Internal GUI validation bridge"},
-    {"hymos_submit",HymosSubmit,"Submit a non-blocking HyMoS task"},
+    {"hymos_submit",HymosSubmit,"Submit a non-blocking HyMoS-Baltamatica task"},
     {"hymos_submit_text",HymosSubmitText,"Internal GUI task submission bridge"},
     {"hymos_status",HymosStatus,"Read task status"},
     {"hymos_wait",HymosWait,"Bounded task wait"},

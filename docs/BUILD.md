@@ -17,8 +17,8 @@ bash scripts/build.sh --prefix /opt/Baltamatica --jobs 4
 
 ## 产物
 
-- `build-release/lib/libhymos.so.1.0.1`：HyMoS 计算共享库，ABI 名为 `libhymos.so.5`。
-- `build-release/plugin/HyMoS/`：完整插件，入口遵循北太天元 SDK 的 `main.so` 命名。
+- `build-release/lib/libhymos.so.1.0.2`：HyMoS 计算共享库，ABI 名为 `libhymos.so.5`。
+- `build-release/plugin/HyMoS-Baltamatica/`：完整插件，入口遵循北太天元 SDK 的 `main.so` 命名。
 - `build-release/bin/hymos`：命令行入口。
 
 ## 打包
@@ -27,20 +27,22 @@ bash scripts/build.sh --prefix /opt/Baltamatica --jobs 4
 bash scripts/package.sh --source
 ```
 
-在 `dist/` 中生成二进制包、源码包及 SHA-256 校验文件。二进制包顶层目录为 `HyMoS/`，包含共享库、界面脚本、输入模板、示例、使用说明和许可证。SDK 库由北太天元提供，C/C++ 及 OpenMP 运行库由系统提供。实际依赖清单保存在包内 `RUNTIME_DEPENDENCIES.txt`。
+在 `dist/` 中生成二进制包、源码包及 SHA-256 校验文件。二进制包顶层目录为 `HyMoS-Baltamatica/`，包含共享库、界面脚本、输入模板、示例、使用说明和许可证。SDK 库由北太天元提供，C/C++ 及 OpenMP 运行库由系统提供。实际依赖清单保存在包内 `RUNTIME_DEPENDENCIES.txt`。
 
 ## 安装
 
-可直接将解压后的完整 `HyMoS/` 复制到北太天元的 `plugins/` 目录，也可使用随包脚本：
+可直接将解压后的完整 `HyMoS-Baltamatica/` 复制到北太天元的 `plugins/` 目录，也可使用随包脚本：
 
 ```bash
-bash HyMoS/scripts/install.sh --prefix /opt/Baltamatica --dry-run
-bash HyMoS/scripts/install.sh --prefix /opt/Baltamatica
+bash HyMoS-Baltamatica/scripts/install.sh --prefix /opt/Baltamatica --dry-run
+bash HyMoS-Baltamatica/scripts/install.sh --prefix /opt/Baltamatica
 ```
 
-从源码工作区安装时使用 `bash scripts/install.sh --prefix /opt/Baltamatica`。若通过 `--build-dir` 使用了其他构建目录，安装时以 `--bundle PATH/plugin/HyMoS` 指定对应插件包。`--plugin-dir PATH` 指定宿主插件父目录，脚本将在其中安装 `HyMoS/`。更新本工具已安装的版本时使用 `--replace`，原目录会保留为备份。安装到系统目录时需相应写入权限。
+从源码工作区安装时使用 `bash scripts/install.sh --prefix /opt/Baltamatica`。若通过 `--build-dir` 使用了其他构建目录，安装时以 `--bundle PATH/plugin/HyMoS-Baltamatica` 指定对应插件包。`--plugin-dir PATH` 指定宿主插件父目录，脚本将在其中安装 `HyMoS-Baltamatica/`。更新本工具已安装的版本时使用 `--replace`，原目录会保留为备份。安装到系统目录时需相应写入权限。
 
-加载命令统一为 `load_plugin('HyMoS')`。更换已加载的插件文件后重启北太天元。
+加载命令统一为 `load_plugin('HyMoS-Baltamatica')`。更换已加载的插件文件后重启北太天元。
+
+从 1.0.1 及以前版本升级时，先退出北太天元，将旧 `plugins/HyMoS` 目录移至插件搜索目录之外，再安装新目录。在插件管理中启用 `HyMoS-Baltamatica`，原有 `hymos_*` 调用保持有效。
 
 ## 技术文档编译
 
@@ -48,5 +50,5 @@ bash HyMoS/scripts/install.sh --prefix /opt/Baltamatica
 
 ```bash
 cd docs/technical
-latexmk -xelatex HyMoS.tex
+latexmk -xelatex HyMoS-Baltamatica.tex
 ```

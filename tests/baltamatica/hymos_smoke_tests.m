@@ -1,6 +1,6 @@
 function hymos_smoke_tests(example_dir)
-% Host integration checks for the public HyMoS plugin release.
-% Run after load_plugin('HyMoS'). Tests read templates without modifying them.
+% Host integration checks for the public HyMoS-Baltamatica plugin release.
+% Run after load_plugin('HyMoS-Baltamatica'). Tests read templates without modifying them.
 if nargin == 0
     example_dir = 'examples/ParallelPlate1D';
 end

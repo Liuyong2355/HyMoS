@@ -57,4 +57,4 @@ cmake --build "$build_dir" --parallel "$jobs"
 if [[ "$tests" == ON ]]; then
     ctest --test-dir "$build_dir" --output-on-failure
 fi
-printf '\nPlugin: %s/plugin/HyMoS\n' "$build_dir"
+printf '\nPlugin: %s/plugin/HyMoS-Baltamatica\n' "$build_dir"

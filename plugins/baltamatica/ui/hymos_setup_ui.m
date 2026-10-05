@@ -5,7 +5,7 @@ if ~strcmpi(char(case_id), 'couette')
 end
 state = hymos_editor_state(template_path);
 ui.schema = hymos_form_schema();
-fig = uifigure('Name', 'HyMoS 一维平行板 BGK 参数配置', 'Position', [60 45 1180 820]);
+fig = uifigure('Name', 'HyMoS-Baltamatica 一维平行板 BGK 参数配置', 'Position', [60 45 1180 820]);
 % Light sidebar, large content title, and a compact fixed action bar.
 hymos_visual_style(fig, 'Color', [0.97 0.98 1]);
 % This UI uses a fixed pixel layout; prevent a smaller window from making
@@ -13,8 +13,8 @@ hymos_visual_style(fig, 'Color', [0.97 0.98 1]);
 hymos_visual_style(fig, 'Resize', 'off');
 sidebar = uilabel(fig, 'Text', '', 'Position', [0 155 220 665]);
 hymos_visual_style(sidebar, 'BackgroundColor', [0.94 0.96 0.99]);
-brand = uilabel(fig, 'Text', 'HyMoS', 'Position', [28 753 175 38]);
-hymos_visual_style(brand, 'FontSize', 25, 'FontWeight', 'bold', 'FontColor', [0.09 0.22 0.43]);
+brand = uilabel(fig, 'Text', 'HyMoS-Baltamatica', 'Position', [18 753 195 38]);
+hymos_visual_style(brand, 'FontSize', 17, 'FontWeight', 'bold', 'FontColor', [0.09 0.22 0.43]);
 brand_note = uilabel(fig, 'Text', '1D PARALLEL PLATE / BGK', 'Position', [28 720 180 25]);
 hymos_visual_style(brand_note, 'FontSize', 13, 'FontColor', [0.39 0.46 0.58]);
 ui.title = uilabel(fig, 'Text', '一维平行板 BGK 算例', 'Position', [260 746 875 45]);
@@ -384,7 +384,7 @@ end
 function hymos_form_action(src, event, action, fig, ui, template_path)
 try
     if strcmp(action, 'load')
-        [file, location] = uigetfile({'*.txt;*.ini', 'HyMoS 参数文件'}, '加载参数');
+        [file, location] = uigetfile({'*.txt;*.ini', 'HyMoS-Baltamatica 参数文件'}, '加载参数');
         if isequal(file, 0)
             return;
         end
@@ -436,10 +436,10 @@ try
         set(fig, 'UserData', data);
         set(ui.path, 'Text', ['当前文件：' data.path]);
         set(ui.message, 'Text', '参数文件已保存；会话参数尚未应用。');
-        disp(['HyMoS 参数已保存：' data.path]);
+        disp(['HyMoS-Baltamatica 参数已保存：' data.path]);
     elseif strcmp(action, 'apply')
         path = hymos_editor_apply(data.text, data.path, get(ui.save_on_apply, 'Value'));
-        disp('HyMoS 参数已应用。运行并监视：hymos_run();');
+        disp('HyMoS-Baltamatica 参数已应用。运行并监视：hymos_run();');
         try
             close(fig);
         catch err

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(HyMoS VERSION 1.0.1 LANGUAGES CXX)
+project(HyMoS VERSION 1.0.2 LANGUAGES CXX)
 
 # ===== 编译选项 =====
 set(CMAKE_CXX_STANDARD 11)
@@ -132,7 +132,7 @@ set_target_properties(hymos PROPERTIES
 option(HYMOS_BUILD_BALTAMATICA_PLUGIN "Build the Baltamatica plugin" OFF)
 if(HYMOS_BUILD_BALTAMATICA_PLUGIN)
     find_package(Baltamatica 4.1 REQUIRED HINTS /opt/Baltamatica)
-    set(HYMOS_PLUGIN_BUNDLE_DIR "${CMAKE_BINARY_DIR}/plugin/HyMoS")
+    set(HYMOS_PLUGIN_BUNDLE_DIR "${CMAKE_BINARY_DIR}/plugin/HyMoS-Baltamatica")
     add_baltamatica_plugin(hymos_baltamatica_plugin plugins/baltamatica/hymos_plugin.cpp)
     target_link_libraries(hymos_baltamatica_plugin PRIVATE HyMoS::core)
     target_include_directories(hymos_baltamatica_plugin PRIVATE ${CMAKE_SOURCE_DIR}/src/engine)
@@ -151,7 +151,7 @@ if(HYMOS_BUILD_BALTAMATICA_PLUGIN)
             -P "${CMAKE_SOURCE_DIR}/scripts/assemble_plugin.cmake"
         DEPENDS hymos_baltamatica_plugin hymos_core
         VERBATIM
-        COMMENT "Assembling the HyMoS Baltamatica plugin")
+        COMMENT "Assembling the HyMoS-Baltamatica plugin")
 endif()
 
 # Opt-in integration checks; no extra dependency for ordinary solver builds.

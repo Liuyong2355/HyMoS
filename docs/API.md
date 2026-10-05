@@ -1,6 +1,6 @@
-# HyMoS 接口参考
+# HyMoS-Baltamatica 接口参考
 
-插件在北太天元中通过 `load_plugin('HyMoS')` 加载。日常操作见[技术文档](HyMoS_技术文档.pdf)，本页用于脚本调用及开发查阅。配置和返回数组均使用无量纲量。
+插件在北太天元中通过 `load_plugin('HyMoS-Baltamatica')` 加载。日常操作见[技术文档](HyMoS-Baltamatica-technical-guide.pdf)，本页用于脚本调用及开发查阅。配置和返回数组均使用无量纲量。
 
 ## 图形界面入口
 

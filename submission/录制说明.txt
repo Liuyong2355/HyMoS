@@ -1,6 +1,6 @@
-HyMoS 插件演示视频
+HyMoS-Baltamatica 插件演示视频
 
-文件：HyMoS-demo.mp4；独立字幕：HyMoS-demo.zh-CN.srt。
+文件：HyMoS-Baltamatica-demo.mp4；独立字幕：HyMoS-Baltamatica-demo.zh-CN.srt。
 时长：02:32。1920×1080，30 帧/秒，H.264 MP4，AAC 音轨。
 录制日期：2026-10-05。系统 Win+G 实机录制，配作者本人讲解，按讲解调整画面停留时间。
 中文字幕已嵌入底部独立区域。独立 SRT 文件供后续编辑，播放视频时无需另行加载。

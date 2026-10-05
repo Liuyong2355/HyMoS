@@ -55,7 +55,7 @@ prolongationline/.style={-{Stealth[length=1.2mm]},line width=0.7pt,dashed,draw=r
 \begin{document}
 \pagestyle{plain}
 \begin{center}
-{\LARGE\bfseries HyMoS\par}
+{\LARGE\bfseries HyMoS-Baltamatica\par}
 \vspace{0.5em}
 {\large 北太天元插件开发技术文档\par}
 \vspace{0.6em}
@@ -228,7 +228,7 @@ SDK 适配 & C++11、北太天元 SDK & 注册插件函数，管理任务句柄�
 
 GNU C/C++ 及 OpenMP 运行库由系统提供；OpenMP 运行库可通过 \texttt{sudo apt install libgomp1} 安装。Eigen、Boost、MPI、FFTW 和 oneTBB 用于源码构建，使用预编译包无需另行安装。
 
-从项目发布页下载预编译包，解压后将完整的 \code{HyMoS/} 目录放入北太天元的 \code{plugins/} 目录，保留根目录的 \code{main.so} 及 \code{lib/}、\code{ui/}、\code{assets/}、\code{examples/}。同一会话加载一个 HyMoS 版本，更换版本后重启宿主。任务输出默认位于 \code{/tmp/hymos_baltamatica_runs}；如需长期保存，可在启动宿主前通过 \code{HYMOS_RUNS_ROOT} 指定用户可写目录。
+从项目发布页下载预编译包，解压后将完整的 \code{HyMoS-Baltamatica/} 目录放入北太天元的 \code{plugins/} 目录，保留根目录的 \code{main.so} 及 \code{lib/}、\code{ui/}、\code{assets/}、\code{examples/}。同一会话加载一个插件版本，更换版本后重启宿主。任务输出默认位于 \code{/tmp/hymos_baltamatica_runs}；如需长期保存，可在启动宿主前通过 \code{HYMOS_RUNS_ROOT} 指定用户可写目录。
 
 \subsection{源码构建（开发者可选）}
 源码构建用于修改程序后重新生成插件，或复现开发测试；直接使用预编译包时可跳过本节。工程采用 C++11、CMake、OpenMP 和北太天元 SDK，已验证编译工具为 GNU C++ 9.5.0、CMake 3.28.3。下表列出工程默认构建配置使用的第三方依赖。
@@ -253,7 +253,7 @@ sudo apt install build-essential cmake python3 libopenmpi-dev \
   libboost-thread-dev libfftw3-dev libtbb-dev
 bash scripts/build.sh --prefix /opt/Baltamatica
 \end{lstlisting}
-构建脚本自动执行回归测试，结果位于 \code{build-release/plugin/HyMoS/}。可按第 4.1 节复制安装，或执行 \lstinline|bash scripts/install.sh --prefix /opt/Baltamatica|。
+构建脚本自动执行回归测试，结果位于 \code{build-release/plugin/HyMoS-Baltamatica/}。可按第 4.1 节复制安装，或执行 \lstinline|bash scripts/install.sh --prefix /opt/Baltamatica|。
 
 \Needspace{26\baselineskip}
 \section{操作流程}
@@ -330,7 +330,7 @@ TangentialVelocity = 0.62885
 \Needspace{34\baselineskip}
 上述参数也可在图形界面中直接填写。加载插件并打开配置窗口：
 \begin{lstlisting}
-load_plugin('HyMoS');
+load_plugin('HyMoS-Baltamatica');
 hymos_setup('1D');
 \end{lstlisting}
 图\ref{fig:plugin-parameters}展示参数窗口的“物理参数”页。在左侧依次选择“物理参数”“网格与阶数”“求解方法”，填写对应参数；求解方法选为 \code{nmg} 后，可编辑“多重网格”设置。点击“检查参数”，通过后点击“应用并关闭”。“加载参数”可读取随包的 \code{couette.txt}、\code{fourier.txt} 和 \code{couette_fourier.txt}；“保存参数”或“另存为”用于保存完整配置。
@@ -393,7 +393,7 @@ files = hymos_export(hymos_task);
 
 \clearpage
 \section{项目资料}
-公开仓库：\url{https://github.com/Liuyong2355/HyMoS}。源码、编译后的插件、技术文档、接口参考、测试源码及演示视频统一在仓库和发布页提供。HyMoS 采用 MIT 许可证，保留原作者版权及署名；第三方组件遵循各自的许可证，来源和许可见仓库中的 \code{THIRD_PARTY_NOTICES.md}。
+公开仓库：\url{https://github.com/Liuyong2355/HyMoS-Baltamatica}。源码、编译后的插件、技术文档、接口参考、测试源码及演示视频统一在仓库和发布页提供。HyMoS-Baltamatica 采用 MIT 许可证，保留原作者版权及署名；第三方组件遵循各自的许可证，来源和许可见仓库中的 \code{THIRD_PARTY_NOTICES.md}。
 
 \Needspace{10\baselineskip}
 \noindent\textbf{团队联系（南京航空航天大学）}
@@ -411,7 +411,7 @@ files = hymos_export(hymos_task);
 \par\smallskip
 感谢新加坡国立大学蔡振宁教授提供 NRxx 代码。联系邮箱：\href{mailto:matcz@nus.edu.cn}{\nolinkurl{matcz@nus.edu.cn}}。
 
-图形界面借助 AI 辅助开发，技术文档借助 AI 整理，演示视频借助 AI 剪辑。
+图形界面借助 AI 辅助开发，技术文档及演示文稿借助 AI 整理，演示视频借助 AI 剪辑。
 
 {\small\linespread{1}\selectfont
 \setlength{\bibsep}{0.3em}

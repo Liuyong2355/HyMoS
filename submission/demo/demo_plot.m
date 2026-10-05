@@ -1,5 +1,5 @@
 function demo_plot(task, field)
-% Plot a completed HyMoS task. Call once for each field during recording.
+% Plot a completed HyMoS-Baltamatica task. Call once for each field during recording.
 r = hymos_result(task);
 if ~strcmp(char(r.metadata.state), 'converged')
     error('The demonstration task has not converged.');

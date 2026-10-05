@@ -6,9 +6,9 @@ foreach(required HYMOS_SOURCE_DIR HYMOS_BUNDLE_DIR HYMOS_CORE_FILE HYMOS_CORE_SO
 endforeach()
 get_filename_component(bundle_name "${HYMOS_BUNDLE_DIR}" NAME)
 if(NOT IS_ABSOLUTE "${HYMOS_BUNDLE_DIR}" OR
-   NOT bundle_name STREQUAL "HyMoS" OR
+   NOT bundle_name STREQUAL "HyMoS-Baltamatica" OR
    NOT EXISTS "${HYMOS_BUNDLE_DIR}/main.so")
-    message(FATAL_ERROR "Expected the built HyMoS plugin directory")
+    message(FATAL_ERROR "Expected the built HyMoS-Baltamatica plugin directory")
 endif()
 get_filename_component(bundle_real "${HYMOS_BUNDLE_DIR}" REALPATH)
 get_filename_component(source_real "${HYMOS_SOURCE_DIR}" REALPATH)
@@ -61,21 +61,21 @@ foreach(document README.md docs/BUILD.md)
     set(document_path "${HYMOS_BUNDLE_DIR}/${document}")
     if(EXISTS "${document_path}")
         file(READ "${document_path}" document_text)
-        string(REPLACE "(submission/README.md)"
-            "(https://github.com/Liuyong2355/HyMoS/blob/main/submission/README.md)"
+        string(REPLACE "(submission/"
+            "(https://github.com/Liuyong2355/HyMoS-Baltamatica/blob/main/submission/"
             document_text "${document_text}")
-        string(REPLACE "(tests/README.md)"
-            "(https://github.com/Liuyong2355/HyMoS/blob/main/tests/README.md)"
+        string(REPLACE "(tests/"
+            "(https://github.com/Liuyong2355/HyMoS-Baltamatica/blob/main/tests/"
             document_text "${document_text}")
-        string(REPLACE "(../tests/README.md)"
-            "(https://github.com/Liuyong2355/HyMoS/blob/main/tests/README.md)"
+        string(REPLACE "(../tests/"
+            "(https://github.com/Liuyong2355/HyMoS-Baltamatica/blob/main/tests/"
             document_text "${document_text}")
         file(WRITE "${document_path}" "${document_text}")
     endif()
 endforeach()
-file(WRITE "${HYMOS_BUNDLE_DIR}/.hymos-plugin" "name=HyMoS\nformat=1\nversion=${HYMOS_VERSION}\n")
+file(WRITE "${HYMOS_BUNDLE_DIR}/.hymos-plugin" "name=HyMoS-Baltamatica\nformat=1\nversion=${HYMOS_VERSION}\n")
 file(WRITE "${HYMOS_BUNDLE_DIR}/RUNTIME_DEPENDENCIES.txt"
-"HyMoS ${HYMOS_VERSION} - Baltamatica Linux plugin
+"HyMoS-Baltamatica ${HYMOS_VERSION} - Baltamatica Linux plugin
 Bundled solver: lib/libhymos.so.5 (with its versioned library).
 Host dependency: libbex.so is supplied by the Baltamatica installation.
 System dependencies: glibc, libstdc++, libgcc_s, libm, libgomp (OpenMP).

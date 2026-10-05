@@ -1,8 +1,8 @@
-# HyMoS
+# HyMoS-Baltamatica
 
-**Hyperbolic Moment Solver · 北太天元插件**
+**HyMoS（Hyperbolic Moment Solver）的北太天元插件**
 
-HyMoS 采用快速迭代矩方法（FIM）求解一维稳态 Boltzmann–BGK 方程，支持 Couette、Fourier 和 Couette–Fourier 平行板流动。用户在北太天元图形界面中设置参数，调用插件完成求解、结果分析和数据导出。
+HyMoS-Baltamatica 将 HyMoS 接入北太天元，采用快速迭代矩方法（FIM）求解一维稳态 Boltzmann–BGK 方程，支持 Couette、Fourier 和 Couette–Fourier 平行板流动。用户在北太天元图形界面中设置参数，调用插件完成求解、结果分析和数据导出。
 
 本仓库面向 B3“自选开源库插件开发”。参赛说明见 [材料清单](submission/README.md)。
 
@@ -18,10 +18,10 @@ HyMoS 采用快速迭代矩方法（FIM）求解一维稳态 Boltzmann–BGK 方
 
 已验证平台：**Ubuntu 24.04 x86_64（含 WSL2）和北太天元 2025 Linux 版**。
 
-从 [Releases](https://github.com/Liuyong2355/HyMoS/releases) 下载 `HyMoS-1.0.1-linux-x86_64.tar.gz`，解压后将整个 `HyMoS` 目录放入北太天元的 `plugins` 目录。默认位置为 `/opt/Baltamatica/plugins/HyMoS`。
+从 [Releases](https://github.com/Liuyong2355/HyMoS-Baltamatica/releases) 下载 `HyMoS-Baltamatica-1.0.2-linux-x86_64.tar.gz`，解压后将整个 `HyMoS-Baltamatica` 目录放入北太天元的 `plugins` 目录。默认位置为 `/opt/Baltamatica/plugins/HyMoS-Baltamatica`。
 
 ```text
-plugins/HyMoS/
+plugins/HyMoS-Baltamatica/
 ├── main.so
 ├── lib/
 ├── ui/
@@ -36,7 +36,7 @@ plugins/HyMoS/
 在北太天元命令窗口执行：
 
 ```matlab
-load_plugin('HyMoS');
+load_plugin('HyMoS-Baltamatica');
 hymos_setup('1D');
 ```
 
@@ -55,7 +55,7 @@ files = hymos_export(hymos_task);
 
 任务在后台求解；`hymos_run()` 同时显示前台监视。`Ctrl+C` 可结束前台监视，随后通过 `hymos_monitor(hymos_task)` 继续查看。`hymos_stop(hymos_task)` 请求在安全迭代边界停止计算。
 
-详细说明：[技术文档](docs/HyMoS_技术文档.pdf) · [接口参考](docs/API.md) · [算例](examples/ParallelPlate1D/README_CN.md) · [演示视频](submission/HyMoS-demo.mp4)。视频含作者配音和中文字幕，时长约 2 分 32 秒；另附 [SRT 字幕](submission/HyMoS-demo.zh-CN.srt)。
+详细说明：[技术文档](docs/HyMoS-Baltamatica-technical-guide.pdf) · [接口参考](docs/API.md) · [算例](examples/ParallelPlate1D/README_CN.md) · [演示文稿](submission/slides/HyMoS-Baltamatica-slides.pdf) · [演示视频](submission/HyMoS-Baltamatica-demo.mp4)。视频含作者配音和中文字幕，时长约 2 分 32 秒；另附 [SRT 字幕](submission/HyMoS-Baltamatica-demo.zh-CN.srt)。
 
 ## 源码构建
 
@@ -70,7 +70,7 @@ bash scripts/build.sh
 
 SDK 默认路径 `/opt/Baltamatica`。其他路径可通过脚本的 `--prefix` 选项指定，完整选项见 `bash scripts/build.sh --help`。
 
-构建产物位于 `build-release/plugin/HyMoS/`；发布和安装命令见 [构建说明](docs/BUILD.md)。
+构建产物位于 `build-release/plugin/HyMoS-Baltamatica/`；发布和安装命令见 [构建说明](docs/BUILD.md)。
 
 ## 验证
 
@@ -81,7 +81,7 @@ ctest --test-dir build-release --output-on-failure
 在北太天元中，以本仓库为当前目录运行宿主集成检查：
 
 ```matlab
-load_plugin('HyMoS');
+load_plugin('HyMoS-Baltamatica');
 addpath('tests/baltamatica');
 hymos_smoke_tests('examples/ParallelPlate1D');
 ```
@@ -99,7 +99,7 @@ hymos_smoke_tests('examples/ParallelPlate1D');
 | `tests/` | 库回归基准、配置读取测试、宿主检查 |
 | `docs/` | 技术文档、接口参考、构建说明 |
 | `scripts/` | 构建、打包、安装工具 |
-| `submission/` | 参赛材料和讲解视频 |
+| `submission/` | 演示文稿、讲解视频、参赛说明 |
 
 ## 致谢
 
@@ -118,4 +118,4 @@ hymos_smoke_tests('examples/ParallelPlate1D');
 
 ## 许可
 
-HyMoS 采用 [MIT 许可证](LICENSE)，保留源码中的原作者版权及署名。第三方组件遵循各自的许可证，来源和许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。AI 辅助范围见 [AI_USAGE.md](AI_USAGE.md)。
+HyMoS-Baltamatica 采用 [MIT 许可证](LICENSE)，保留源码中的原作者版权及署名。第三方组件遵循各自的许可证，来源和许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。AI 辅助范围见 [AI_USAGE.md](AI_USAGE.md)。

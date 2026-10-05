@@ -29,17 +29,17 @@ while true
     if ~strcmp(state, 'pending') && ~strcmp(state, 'running')
         fprintf('\n');
         if strcmp(state, 'converged')
-            disp('HyMoS converged: target tolerance reached.');
+            disp('HyMoS-Baltamatica converged: target tolerance reached.');
         elseif strcmp(state, 'iteration_limit')
-            disp('HyMoS iteration limit reached: convergence was not achieved.');
+            disp('HyMoS-Baltamatica iteration limit reached: convergence was not achieved.');
         elseif strcmp(state, 'stopped')
-            disp('HyMoS stopped at a safe iteration boundary; result may be partial.');
+            disp('HyMoS-Baltamatica stopped at a safe iteration boundary; result may be partial.');
         elseif strcmp(state, 'busy')
-            disp('HyMoS busy: another Couette solve is active; this task did not run.');
+            disp('HyMoS-Baltamatica busy: another Couette solve is active; this task did not run.');
         elseif strcmp(state, 'invalid_config')
-            disp('HyMoS invalid configuration: calculation was not started.');
+            disp('HyMoS-Baltamatica invalid configuration: calculation was not started.');
         else
-            disp('HyMoS failed: calculation did not complete successfully.');
+            disp('HyMoS-Baltamatica failed: calculation did not complete successfully.');
         end
         disp(['Details: ' char(status.message)]);
         return;

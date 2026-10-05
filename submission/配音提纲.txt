@@ -1,4 +1,4 @@
-HyMoS 插件演示配音提纲
+HyMoS-Baltamatica 插件演示配音提纲
 
 1. 插件用途
 本插件将 HyMoS，也就是 Hyperbolic Moment Solver，接入北太天元。它采用快速迭代矩方法 FIM，求解一维稳态玻尔兹曼方程的 BGK 模型，支持 Couette、Fourier 和耦合平行板流动。用户可以在北太天元中完成配置、计算、绘图和数据导出。

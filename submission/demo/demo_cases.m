@@ -1,5 +1,5 @@
 function [fourier, coupled] = demo_cases(example_dir)
-% Run the two bundled HyMoS examples without changing GUI-applied parameters.
+% Run the two bundled HyMoS-Baltamatica examples without changing GUI-applied parameters.
 % These checks cover convergence and field consistency, not reference accuracy.
 if nargin == 0
     example_dir = 'examples/ParallelPlate1D';

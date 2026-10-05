@@ -20,7 +20,7 @@ Usage: scripts/package.sh [options]
 
 Run scripts/build.sh before packaging a binary release.
 SOURCE_DATE_EPOCH controls archive timestamps; the default is 0.
-The binary archive contains HyMoS/ at its top level.
+The binary archive contains HyMoS-Baltamatica/ at its top level.
 EOF
 }
 while (($#)); do
@@ -49,7 +49,7 @@ trap 'if [[ -n "$temporary" && -f "$temporary" ]]; then rm -f -- "$temporary"; f
 archive() {
     local parent="$1" filename="$2"
     shift 2
-    temporary="$(mktemp "$output_dir/.HyMoS-archive.XXXXXX")"
+    temporary="$(mktemp "$output_dir/.HyMoS-Baltamatica-archive.XXXXXX")"
     tar --sort=name --mtime="@$epoch" --owner=0 --group=0 --numeric-owner \
         --format=posix --pax-option=exthdr.name=%d/PaxHeaders/%f,delete=atime,delete=ctime \
         --mode='u+rwX,go+rX,go-w' -C "$parent" -cf - "$@" |
@@ -68,9 +68,9 @@ if "$make_binary"; then
         { echo "Build first with scripts/build.sh." >&2; exit 1; }
     # Reassemble so the archive includes the current documentation and licenses.
     cmake --build "$build_dir" --target hymos_baltamatica_bundle --parallel 4
-    bundle="$build_dir/plugin/HyMoS"
+    bundle="$build_dir/plugin/HyMoS-Baltamatica"
     [[ -f "$bundle/main.so" && -f "$bundle/lib/libhymos.so.5" ]] ||
-        { echo "The HyMoS bundle is incomplete." >&2; exit 1; }
+        { echo "The HyMoS-Baltamatica bundle is incomplete." >&2; exit 1; }
     (cd -- "$bundle" && sha256sum --check --quiet SHA256SUMS)
     # Package only the solver. The SDK and OS supply these remaining libraries.
     for library in "$bundle/main.so" "$bundle/lib/libhymos.so.5"; do
@@ -82,7 +82,7 @@ if "$make_binary"; then
             esac
         done < <(printf '%s\n' "$dependency_text" | sed -n 's/.*Shared library: \[\(.*\)\]/\1/p')
     done
-    archive "$build_dir/plugin" "HyMoS-$version-linux-x86_64.tar.gz" HyMoS
+    archive "$build_dir/plugin" "HyMoS-Baltamatica-$version-linux-x86_64.tar.gz" HyMoS-Baltamatica
 fi
 
 if "$make_source"; then
@@ -93,13 +93,14 @@ if "$make_source"; then
         [[ ! -e "$SOURCE_ROOT/$entry" ]] || source_files+=("$entry")
     done
     # An explicit allowlist excludes local builds, runs, backups and old packages.
-    archive "$SOURCE_ROOT" "HyMoS-$version-source.tar.gz" \
-        --transform='s,^,HyMoS/,' \
+    archive "$SOURCE_ROOT" "HyMoS-Baltamatica-$version-source.tar.gz" \
+        --transform='s,^,HyMoS-Baltamatica/,' \
         --exclude='__pycache__' --exclude='*.pyc' --exclude='*.swp' \
         --exclude='.DS_Store' --exclude='Thumbs.db' \
         --exclude='*.aux' --exclude='*.log' --exclude='*.out' --exclude='*.toc' \
         --exclude='*.bbl' --exclude='*.blg' --exclude='*.fls' \
         --exclude='*.fdb_latexmk' --exclude='*.synctex.gz' --exclude='*.xdv' \
+        --exclude='*.nav' --exclude='*.snm' --exclude='*.vrb' --exclude='*.dvi' \
         --exclude='tests/output' \
         --exclude='examples/*/.control.*' --exclude='examples/*/.hymos_control_runtime.sh' \
         --exclude='examples/*/hymos_control.sh' --exclude='examples/*/run_*.sh' \

@@ -1,6 +1,6 @@
 # 第三方组件说明
 
-HyMoS 使用以下第三方组件，各组件保留原作者版权及各自的许可证。表中版本为本项目已验证的构建环境版本。
+HyMoS-Baltamatica 及其 HyMoS 计算库使用以下第三方组件，各组件保留原作者版权及各自的许可证。表中版本为本项目已验证的构建环境版本。
 
 ## NRxx 代码来源
 
@@ -28,6 +28,6 @@ Eigen 的头文件参与编译，HyMoS 未修改这些文件。对应源码可�
 
 ## 运行环境
 
-北太天元插件包包含插件入口和 HyMoS 核心库。北太天元 SDK 及 `libbex.so` 由用户安装的北太天元提供，其使用遵循厂商许可。
+HyMoS-Baltamatica 插件包包含插件入口和 HyMoS 核心库。北太天元 SDK 及 `libbex.so` 由用户安装的北太天元提供，其使用遵循厂商许可。
 
 Linux 系统提供 C/C++ 数学及运行库（`libc`、`libm`、`libstdc++`、`libgcc_s`）和 OpenMP 运行库（`libgomp`）。其中 GCC 运行库适用 GPL 3.0 或更高版本及 GCC Runtime Library Exception 3.1，相关文本见 [GPL 3.0](licenses/GPL-3.0.txt) 和 [运行库例外](licenses/GCC-RUNTIME-EXCEPTION-3.1.txt)；glibc 适用 LGPL 2.1 或更高版本。上述系统运行库不随插件包分发。
