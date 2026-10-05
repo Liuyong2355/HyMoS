@@ -15,7 +15,7 @@
 | 测试源码 | [tests/](../tests/README.md) |
 | 讲解 PPT | 由作者补充 |
 | 演示视频 | [HyMoS_插件使用演示.mp4](HyMoS_插件使用演示.mp4) |
-| 开源许可及来源 | 根目录 LICENSE、[THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md) |
+| 开源许可及来源 | [MIT 许可证](../LICENSE)、[THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md) |
 | AI 辅助说明 | [AI_USAGE.md](../AI_USAGE.md) |
 
 技术文档的 LaTeX 源文件及参考文献位于 `docs/technical/`。视频为无声操作演示，可按 `配音提纲.txt` 自行配音。

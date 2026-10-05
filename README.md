@@ -101,4 +101,4 @@ hymos_smoke_tests('examples/ParallelPlate1D');
 | `scripts/` | 构建、打包、安装工具 |
 | `submission/` | 参赛材料和讲解视频 |
 
-第三方来源及许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。AI 辅助范围见 [AI_USAGE.md](AI_USAGE.md)。
+HyMoS 采用 [MIT 许可证](LICENSE)，保留源码中的原作者版权及署名。第三方组件遵循各自的许可证，来源和许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。AI 辅助范围见 [AI_USAGE.md](AI_USAGE.md)。
