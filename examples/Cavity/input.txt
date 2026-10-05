@@ -1,0 +1,52 @@
+[System]
+#Kn=0.1 用 M=9/10，Kn=0.01 用 M=7/8，Kn=0.001 用 M=5/6。
+ORDER = 9
+n_thread = 4
+
+[Mesh]
+Type = 0
+Nx = 256
+Ny = 256
+Lx = 0.0
+Ly = 0.0
+Lenx = 1.0
+Leny = 1.0
+
+[Time]
+t0 = 0.
+TimeSteps = 100
+delta_t = 1
+CFL = 0.8
+CFL_HEs = 0.8
+
+[Const]
+Kn = 0.1
+Pr = 1
+
+[Error]
+Tol = 1e-8
+CurrentSteps = 5
+
+[Solver]
+SolverType = nmg
+# 1 = FIM-1, 2 = FIM-2, 3 = FIM-3
+FIM = 3
+
+[SingleGridMethod]
+#Kn=0.1 用 20，Kn=0.01 用 100，Kn=0.001 用 200。
+EulerEqsSolvingSteps = 20
+
+[MultiGridMethod]
+# 适用于 nmg；single 会忽略这一段
+# 最粗网格边长方向单元数。2D 会从 (Nx, Ny) 开始同步二分，
+# 直到到达 (CoarsestGridSize, CoarsestGridSize)。
+# 层数关系：Levels = 1 + log2(Nx / CoarsestGridSize)
+# 同时也要求 Ny 能按同样方式二分到 CoarsestGridSize。
+# 例如 Nx=Ny=128, CoarsestGridSize=8 时：
+# 128x128 -> 64x64 -> 32x32 -> 16x16 -> 8x8，共 5 层
+PreSmoothingSteps = 2
+PostSmoothingSteps = 2
+CoarsestGridSmoothingSteps = 4
+CoarsestGridSize = 8
+# 1: V-cycle, 2: W-cycle, 3: F-cycle
+CycleType = 1

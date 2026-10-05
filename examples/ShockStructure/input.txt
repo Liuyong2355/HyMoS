@@ -1,0 +1,77 @@
+#this is a inputfile for ShockStructure
+[System]
+Quantum=0
+Temperature = 1
+#阶数 
+ORDER = 7
+# OpenMP thread count
+n_thread = 1
+
+
+#计算区域大小
+[Mesh]
+# 网格类型, 0: 均匀网格, 1: 非均匀网格, 此时外部读入网格, 需要提供网格名称
+Type = 0
+#网格个数
+Nx = 8192
+# 区域左边界, 
+L0 = -1.5
+# 区域长度
+Len = 3.0
+
+
+[Time] 
+#初始时刻 Initial time t0
+t0 = 0.
+#这个是计算的时间步数上限，如果超过这个时间就退出循环 ,
+#总计算时间：Time = TimeSteps * delta_t 
+TimeSteps = 100 
+#时间步长 这只是查看计算结果的时间步长
+delta_t = 1
+#CFL数 
+CFL = 0.8
+#CFL数，流体力学方程组使用时间格式时，用来控制时间步长 
+CFL_HEs = 0.8
+
+[Const]
+pi = 3.1415926535897932384 
+# Knudsen number 
+Kn = 0.1
+# Prandtl number
+Pr = 1
+# Mach number
+Ma = 1.55
+
+
+[Error]
+# Tolerance
+Tol = 5e-5
+#指定的累积误差的时间步数
+CurrentSteps = 5 
+#error: the current oscillates with positions, but if the oscillating 
+#amplitude #is smaller than error. We think the current converges. 
+# (I_i -average)/avergage < error. 
+
+[Solver]
+# Supported modes: single or nmg.
+SolverType = nmg
+# 1 = FIM-1, 2 = FIM-2, 3 = FIM-3
+FIM = 3
+
+
+[SingleGridMethod]
+# 宏观方程组迭代次数
+EulerEqsSolvingSteps = 5
+
+[MultiGridMethod]
+# 适用于 nmg；single 会忽略这一段
+# 最粗网格单元数。1D 会从 Mesh/Nx 开始不断二分，直到到达这个值。
+# 层数关系：Levels = 1 + log2(Nx / CoarsestGridSize)
+# 例如 Nx=1024, CoarsestGridSize=8 时：
+# 1024 -> 512 -> 256 -> 128 -> 64 -> 32 -> 16 -> 8，共 8 层
+PreSmoothingSteps = 2
+PostSmoothingSteps = 2
+CoarsestGridSmoothingSteps = 4
+CoarsestGridSize = 128
+# 1: V-cycle, 2: W-cycle, 3: F-cycle
+CycleType = 1

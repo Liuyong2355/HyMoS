@@ -1,0 +1,36 @@
+[System]
+Temperature = 1
+ORDER = 7
+n_thread = 1
+
+[Mesh]
+Type = 0
+Nx = 128
+L0 = -0.5
+Len = 1.0
+
+[Time]
+CFL = 0.8
+CFL_HEs = 0.8
+
+[Const]
+Kn = 0.01
+Pr = 1.0
+
+[Error]
+Tol = 1e-8
+
+[Solver]
+SolverType = single
+FIM = 3
+
+[SingleGridMethod]
+EulerEqsSolvingSteps = 600
+
+[LeftWall]
+Temperature = 1.10
+TangentialVelocity = -0.141421
+
+[RightWall]
+Temperature = 0.90
+TangentialVelocity = 0.141421

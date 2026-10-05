@@ -1,0 +1,31 @@
+/build*/
+/dist/
+/workspace_runs/
+/work/
+/.codex
+/.agents/
+*.o
+*.a
+*.orig
+*.swp
+__pycache__/
+*.pyc
+# LaTeX build intermediates
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+# Runtime results; regression fixtures under tests/ remain tracked
+/examples/*/.control.*
+/examples/*/hymos_control.sh
+/examples/*/run_*.sh
+/examples/*/*.dat
+/examples/*/*.bin
+/examples/*/res_step
+/tests/output/

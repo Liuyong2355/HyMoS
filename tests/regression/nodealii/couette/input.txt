@@ -1,0 +1,63 @@
+# Input file for Couette flow
+
+[System]
+Quantum=0
+# 无量纲温度
+Temperature = 1
+# 矩方程阶数
+ORDER = 7
+n_thread = 1
+
+[Mesh]
+# 0: 均匀网格
+Type = 0
+Nx = 128
+L0 = -0.5
+Len = 1.0
+
+[Time]
+t0 = 0.
+TimeSteps = 100
+delta_t = 1
+# 高阶矩方程组 CFL 数
+CFL = 0.8
+# 宏观方程组 CFL 数
+CFL_HEs = 0.8
+
+[Const]
+pi = 3.1415926535897932384
+# Knudsen number
+Kn = 0.01
+# Prandtl number
+Pr = 1.0
+# Mach number
+Ma = 1.0
+
+[Error]
+Tol = 1e-8
+#指定的累积误差的时间步数
+CurrentSteps = 5
+
+[Solver]
+# single/nmg
+SolverType = single
+# 1 = FIM-1, 2 = FIM-2, 3 = FIM-3
+FIM = 3
+
+[SingleGridMethod]
+# 宏观方程组（EulerGSIteration）每次 FIM 交替迭代的步数，对应论文 γ₂
+# Kn=0.1 → 40, Kn=0.01 → 300, Kn=0.001 → 600
+EulerEqsSolvingSteps = 600
+
+[MultiGridMethod]
+# 适用于 nmg；single 会忽略这一段
+# 最粗网格单元数。1D 会从 Mesh/Nx 开始不断二分，直到到达这个值。
+# 层数关系：Levels = 1 + log2(Nx / CoarsestGridSize)
+# 例如 Nx=512, CoarsestGridSize=8 时：
+# 512 -> 256 -> 128 -> 64 -> 32 -> 16 -> 8，共 7 层
+PreSmoothingSteps = 2
+PostSmoothingSteps = 2
+CoarsestGridSmoothingSteps = 4
+CoarsestGridSize = 8
+# 1: V-cycle, 2: W-cycle, 3: F-cycle
+CycleType = 1

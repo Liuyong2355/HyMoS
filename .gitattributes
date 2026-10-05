@@ -1,0 +1,15 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.m text eol=lf
+*.py text eol=lf
+*.tex text eol=lf
+*.bib text eol=lf
+*.png binary
+*.pdf binary
+*.pptx binary
+*.mp4 binary
+*.dat -text
+DATA*.dat binary
+res_step -text
