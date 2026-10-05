@@ -574,7 +574,7 @@ BALTAM_PLUGIN_FCN(HymosInfo) {
     Need(nrhs==0 && nlhs<=1,"hymos_info expects no inputs and at most one output");
     const char* names[]={"version","supported_cases","verified_plugin_paths","core_capabilities"};
     bxArray* out=bxCreateStructMatrix(1,1,4,names);
-    bxSetField(out,0,"version",bxCreateStringScalar("HyMoS 1.0.0"));
+    bxSetField(out,0,"version",bxCreateStringScalar("HyMoS 1.0.1"));
     bxSetField(out,0,"supported_cases",bxCreateStringScalar("couette"));
     bxSetField(out,0,"verified_plugin_paths",bxCreateStringScalar("1D parallel-plate BGK: Couette, Fourier and Couette-Fourier through configurable wall temperatures and tangential velocities; ORDER=3..49, single/NMG, FIM=1/2/3, uniform mesh, n_thread=1..256"));
     bxSetField(out,0,"core_capabilities",bxCreateStringScalar("couette, shockstructure, cavity; FIM-1/2/3; single/NMG"));

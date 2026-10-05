@@ -384,15 +384,32 @@ files = hymos_export(hymos_task);
 \code{files} 返回导出路径。场量、残差和元数据分别保存为 \code{couette_fields.csv}、\code{residual.csv} 和 \code{result_metadata.txt}；任务目录同时保留 \code{input.resolved.txt} 输入快照及 \code{DisSol1th.dat} 分布展开数据，便于复核计算条件。
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.74\textwidth]{figures/plugin_temperature.png}
+\includegraphics[width=0.60\textwidth]{figures/plugin_temperature.png}
 \caption{Couette 工况的温度曲线。由北太天元绘制。}
 \label{fig:plugin-temperature}
 \end{figure}
 
 \FloatBarrier
 
+\clearpage
 \section{项目资料}
 公开仓库：\url{https://github.com/Liuyong2355/HyMoS}。源码、编译后的插件、技术文档、接口参考、测试源码及演示视频统一在仓库和发布页提供。HyMoS 采用 MIT 许可证，保留原作者版权及署名；第三方组件遵循各自的许可证，来源和许可见仓库中的 \code{THIRD_PARTY_NOTICES.md}。
+
+\Needspace{10\baselineskip}
+\noindent\textbf{团队联系（南京航空航天大学）}
+\par\smallskip
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}p{0.17\textwidth}Y@{}}
+\toprule
+胡志成 & \href{mailto:huzhicheng@nuaa.edu.cn}{\nolinkurl{huzhicheng@nuaa.edu.cn}}\\
+刘盛琦 & \href{mailto:liushengqi@nuaa.edu.cn}{\nolinkurl{liushengqi@nuaa.edu.cn}}\\
+疏凌云 & \href{mailto:cieloudsly@nuaa.edu.cn}{\nolinkurl{cieloudsly@nuaa.edu.cn}}\\
+陈升光 & \href{mailto:sunnychen@nuaa.edu.cn}{\nolinkurl{sunnychen@nuaa.edu.cn}}\\
+\bottomrule
+\end{tabularx}\par
+}
+\par\smallskip
+感谢新加坡国立大学蔡振宁教授提供 NRxx 代码。联系邮箱：\href{mailto:matcz@nus.edu.cn}{\nolinkurl{matcz@nus.edu.cn}}。
 
 图形界面借助 AI 辅助开发，技术文档借助 AI 整理，演示视频借助 AI 剪辑。
 

@@ -17,7 +17,7 @@ bash scripts/build.sh --prefix /opt/Baltamatica --jobs 4
 
 ## 产物
 
-- `build-release/lib/libhymos.so.1.0.0`：HyMoS 计算共享库，ABI 名为 `libhymos.so.5`。
+- `build-release/lib/libhymos.so.1.0.1`：HyMoS 计算共享库，ABI 名为 `libhymos.so.5`。
 - `build-release/plugin/HyMoS/`：完整插件，入口遵循北太天元 SDK 的 `main.so` 命名。
 - `build-release/bin/hymos`：命令行入口。
 

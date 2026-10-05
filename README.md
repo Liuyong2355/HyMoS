@@ -18,7 +18,7 @@ HyMoS 采用快速迭代矩方法（FIM）求解一维稳态 Boltzmann–BGK 方
 
 已验证平台：**Ubuntu 24.04 x86_64（含 WSL2）和北太天元 2025 Linux 版**。
 
-从 [Releases](https://github.com/Liuyong2355/HyMoS/releases) 下载 `HyMoS-1.0.0-linux-x86_64.tar.gz`，解压后将整个 `HyMoS` 目录放入北太天元的 `plugins` 目录。默认位置为 `/opt/Baltamatica/plugins/HyMoS`。
+从 [Releases](https://github.com/Liuyong2355/HyMoS/releases) 下载 `HyMoS-1.0.1-linux-x86_64.tar.gz`，解压后将整个 `HyMoS` 目录放入北太天元的 `plugins` 目录。默认位置为 `/opt/Baltamatica/plugins/HyMoS`。
 
 ```text
 plugins/HyMoS/
@@ -55,7 +55,7 @@ files = hymos_export(hymos_task);
 
 任务在后台求解；`hymos_run()` 同时显示前台监视。`Ctrl+C` 可结束前台监视，随后通过 `hymos_monitor(hymos_task)` 继续查看。`hymos_stop(hymos_task)` 请求在安全迭代边界停止计算。
 
-详细说明：[技术文档](docs/HyMoS_技术文档.pdf) · [接口参考](docs/API.md) · [算例](examples/ParallelPlate1D/README_CN.md)。
+详细说明：[技术文档](docs/HyMoS_技术文档.pdf) · [接口参考](docs/API.md) · [算例](examples/ParallelPlate1D/README_CN.md) · [演示视频](submission/HyMoS-demo.mp4)。视频含作者配音和中文字幕，时长约 2 分 32 秒；另附 [SRT 字幕](submission/HyMoS-demo.zh-CN.srt)。
 
 ## 源码构建
 
@@ -100,5 +100,22 @@ hymos_smoke_tests('examples/ParallelPlate1D');
 | `docs/` | 技术文档、接口参考、构建说明 |
 | `scripts/` | 构建、打包、安装工具 |
 | `submission/` | 参赛材料和讲解视频 |
+
+## 致谢
+
+感谢新加坡国立大学蔡振宁教授提供 NRxx 代码。联系邮箱：[matcz@nus.edu.cn](mailto:matcz@nus.edu.cn)。
+
+## 联系信息
+
+南京航空航天大学：
+
+| 姓名 | 邮箱 |
+|---|---|
+| 胡志成 | [huzhicheng@nuaa.edu.cn](mailto:huzhicheng@nuaa.edu.cn) |
+| 刘盛琦 | [liushengqi@nuaa.edu.cn](mailto:liushengqi@nuaa.edu.cn) |
+| 疏凌云 | [cieloudsly@nuaa.edu.cn](mailto:cieloudsly@nuaa.edu.cn) |
+| 陈升光 | [sunnychen@nuaa.edu.cn](mailto:sunnychen@nuaa.edu.cn) |
+
+## 许可
 
 HyMoS 采用 [MIT 许可证](LICENSE)，保留源码中的原作者版权及署名。第三方组件遵循各自的许可证，来源和许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。AI 辅助范围见 [AI_USAGE.md](AI_USAGE.md)。
