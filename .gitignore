@@ -8,8 +8,12 @@
 *.a
 *.orig
 *.swp
+*.bak
+*.tmp
+*~
 __pycache__/
 *.pyc
+.pytest_cache/
 # LaTeX build intermediates
 *.aux
 *.log
@@ -28,7 +32,9 @@ __pycache__/
 # Runtime results; regression fixtures under tests/ remain tracked
 /examples/*/.control.*
 /examples/*/hymos_control.sh
+/examples/*/.hymos_control_runtime.sh
 /examples/*/run_*.sh
+/examples/*/runs/
 /examples/*/*.dat
 /examples/*/*.bin
 /examples/*/res_step

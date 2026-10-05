@@ -6,6 +6,8 @@
 
 公开仓库：https://github.com/Liuyong2355/HyMoS-Baltamatica
 
+HyMoS 计算库源码位于仓库的 `src/`、`NRxx/`、`cases/` 和 `apps/`。公开获取方式：从 [v1.0.2 发布页](https://github.com/Liuyong2355/HyMoS-Baltamatica/releases/tag/v1.0.2)下载 `HyMoS-Baltamatica-1.0.2-source.tar.gz`，解压后按 [构建说明](../docs/BUILD.md)编译。
+
 | 比赛要求 | 本仓库材料 |
 |---|---|
 | 完整源码及工程 | 根目录 `CMakeLists.txt`、`src/`、`NRxx/`、`plugins/`、`cases/`、`apps/` |
@@ -21,4 +23,4 @@
 | 开源许可及来源 | [MIT 许可证](../LICENSE)、[THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md) |
 | AI 辅助说明 | [AI_USAGE.md](../AI_USAGE.md) |
 
-技术文档的 LaTeX 源文件及参考文献位于 `docs/technical/`。视频时长约 2 分 32 秒，字幕已嵌入画面，无需另行加载；独立 SRT 文件供修改或复用。操作流程见 [录制说明](录制说明.txt)，演示脚本位于 `submission/demo/`。项目致谢和联系信息见根目录 [README](../README.md#致谢)。
+技术文档的 LaTeX 源文件及参考文献位于 `docs/technical/`。视频时长约 2 分 32 秒，字幕已嵌入画面，无需另行加载；独立 SRT 文件供修改或复用。演示脚本位于 `submission/demo/`。项目致谢和联系信息见根目录 [README](../README.md#致谢)。

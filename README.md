@@ -6,6 +6,8 @@ HyMoS-Baltamatica 将 HyMoS 接入北太天元，采用快速迭代矩方法（F
 
 本仓库面向 B3“自选开源库插件开发”。参赛说明见 [材料清单](submission/README.md)。
 
+HyMoS 计算库的源码位于本仓库的 `src/`、`NRxx/`、`cases/` 和 `apps/`。可从 [v1.0.2 发布页](https://github.com/Liuyong2355/HyMoS-Baltamatica/releases/tag/v1.0.2)下载 `HyMoS-Baltamatica-1.0.2-source.tar.gz`，解压后按[构建说明](docs/BUILD.md)编译。库及插件采用 MIT 许可证，第三方来源见[许可说明](THIRD_PARTY_NOTICES.md)。
+
 ## 功能
 
 - 配置壁面温度、切向速度、Knudsen 数、网格及矩阶数。
